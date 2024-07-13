@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angularDataset';
+
+   // Non-related component communication throught parent
+ // Data-table -o- Modal
+ isUpdate:string = "false";
+
+ receiveUpdate(data: string){
+  this.isUpdate = data;
+}
 }

@@ -1,0 +1,55 @@
+<p></p>WHERE IS THE TABLE
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">REF_DATE</th>
+          <th scope="col">GEO</th>
+          <th scope="col">DGUID</th>
+          <th scope="col">APFVP</th>
+          <th scope="col">UOM</th>
+          <th scope="col">UOM_ID</th>
+          <th scope="col">SCALAR_FACTOR</th>
+          <th scope="col">SCALAR_ID</th>
+          <th scope="col">VECTOR</th>
+          <th scope="col">COORDINATE</th>
+          <th scope="col">VALUE_</th>
+          <th scope="col">STATUS_</th>
+          <th scope="col">SYMBOL</th>
+          <th scope="col">TERM</th>
+          <th scope="col">DECIM</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data">
+          <th scope="row">{{item.id}}</th>             
+          <td>{{item.REF_DATE}}</td>      
+          <td>{{item.GEO}}</td>
+          <td>{{item.DGUID}}</td>
+          <td>{{item.APFVP}}</td>
+          <td>{{item.UOM}}</td>
+          <td>{{item.UOM_ID}}</td>
+          <td>{{item.SCALAR_FACTOR}}</td>
+          <td>{{item.SCALAR_ID}}</td>
+          <td>{{item.VECTOR}}</td>
+          <td>{{item.COORDINATE}}</td>
+          <td>{{item.VALUE_}}</td>
+          <td>{{item.STATUS_}}</td>
+          <td>{{item.SYMBOL}}</td>
+          <td>{{item.TERM}}</td>
+          <td>{{item.DECIM}}</td>
+          <td>
+            <button type="button" class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="populateAndUpdate()">edit</button>
+          </td>
+          <td>            
+            <button type="button" class="btn btn-sm btn-outline-danger">del</button>
+          </td>
+        </tr>
+        
+      </tbody>
+  </table>
+

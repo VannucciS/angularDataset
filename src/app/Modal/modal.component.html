@@ -1,0 +1,114 @@
+<!-- Modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 *ngIf="!buttonVisible"class="modal-title fs-5"  >New </h1>
+          <h1 *ngIf="buttonVisible" class="modal-title fs-5" >Update </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
+        </div>
+        <div class="modal-body">
+        <form  >
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">REF_DATE</label>
+                <div class="col-sm-10">
+                    <input type="text"  class="form-control btn-sm" formControlName="REF_DATE">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">GEO</label>
+                <div class="col-sm-10">
+                    <input type="text"  class="form-control btn-sm" formControlName="GEO">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">DGUID</label>
+                <div class="col-sm-10">
+                    <input type="text"  class="form-control btn-sm" formControlName="DGUID">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">APFVP</label>
+                <div class="col-sm-10">
+                    <input type="text"  class="form-control btn-sm" formControlName="APFVP">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">UOM</label>
+                <div class="col-sm-10">
+                    <input type="text"  class="form-control btn-sm" formControlName="UOM">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">UOM_ID</label>
+                <div class="col-sm-10">
+                    <input type="text"  class="form-control btn-sm" formControlName="UOM_ID">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">SCALAR_FACTOR</label>
+                <div class="col-sm-10">
+                    <input type="text"  class="form-control btn-sm" formControlName="SCALAR_FACTOR">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">SCALAR_ID</label>
+                <div class="col-sm-10">
+                    <input type="text"  class="form-control btn-sm" formControlName="SCALAR_ID">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">VECTOR</label>
+                <div class="col-sm-10">
+                    <input type="text"  class="form-control btn-sm" formControlName="VECTOR">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">COORDINATE</label>
+                <div class="col-sm-10">
+                    <input type="text"  class="form-control btn-sm" formControlName="COORDINATE">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">VALUE_</label>
+                <div class="col-sm-10">
+                    <input type="text"  class="form-control btn-sm" formControlName="VALUE_">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">STATUS_</label>
+                <div class="col-sm-10">
+                    <input type="text"  class="form-control btn-sm" formControlName="STATUS_">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">SYMBOL</label>
+                <div class="col-sm-10">
+                    <input type="text"  class="form-control btn-sm" formControlName="SYMBOL">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">TERM</label>
+                <div class="col-sm-10">
+                    <input type="text"  class="form-control btn-sm" formControlName="TERM">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">DECIM</label>
+                <div class="col-sm-10">
+                    <input type="text"  class="form-control btn-sm" formControlName="DECIM">
+                </div>
+            </div>
+
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary btn-sm" *ngIf="!buttonVisible" >Save</button>
+          <button type="button" class="btn btn-primary btn-sm" *ngIf="buttonVisible">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
