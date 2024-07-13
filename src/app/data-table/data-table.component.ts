@@ -16,13 +16,17 @@ export class DataTableComponent implements OnInit{
     this.dataService.getData().subscribe((response: any)=>{
       this.data = response.data;
     });
+
+    //modification to allow data to be loaded in the modal for edition
+    this.sharedService.data$.subscribe(newData => {
+      this.data = newData;
+    });
   }
 
-  populateAndUpdate(){
-    this.sharedService.toggleButtonVisibility(true);  
-
+  populateAndUpdate(item: any) {
+    this.sharedService.setSelectedItem(item);
+    this.sharedService.toggleButtonVisibility(true);
   }
 
-  populateModal(){}
-
+  
 }

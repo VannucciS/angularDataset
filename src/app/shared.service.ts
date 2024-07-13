@@ -20,4 +20,19 @@ export class SharedService {
     this.resetPreviewSubject.next(true);
   }
 
+  //feature to load data to the modal component for edition
+  private dataSubject = new BehaviorSubject<any[]>([]);
+  data$ = this.dataSubject.asObservable();
+
+  private selectedItemSubject = new BehaviorSubject<any>(null);
+  selectedItem$ = this.selectedItemSubject.asObservable();
+
+  setData(data: any[]) {
+    this.dataSubject.next(data);
+  }
+
+  setSelectedItem(item: any) {
+    this.selectedItemSubject.next(item);
+  }
+
 }
