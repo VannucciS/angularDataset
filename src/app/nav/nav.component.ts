@@ -21,6 +21,11 @@ export class NavComponent{
         )
     }
 
+    openAddModal() {
+      this.sharedService.resetForm(); // This will reset the form in the modal
+      this.sharedService.toggleButtonVisibility(false); // Ensure button visibility is set to false for add
+    }
+
     isUpdate(){
         this.sharedService.toggleButtonVisibility(true)        
     }

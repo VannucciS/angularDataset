@@ -1,6 +1,7 @@
 import { Component,  OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { DataService } from '../data.service';
 
 @Component({
     selector: 'app-modal',
@@ -10,9 +11,15 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class ModalComponent implements OnInit {
     buttonVisible:boolean = false;
     selectedItem: any;
-    form: FormGroup;
+    form!: FormGroup;
     
-    constructor(private fb: FormBuilder, private sharedService: SharedService) {
+    constructor(private fb: FormBuilder, private sharedService: SharedService, private dataService: DataService) {
+        
+
+    } 
+
+    ngOnInit(): void {
+
         this.form = this.fb.group({
             REF_DATE: [''],
             GEO: [''],
@@ -30,28 +37,56 @@ export class ModalComponent implements OnInit {
             TERM: [''],
             DECIM: ['']
           });
-
-    } 
-
-    ngOnInit(): void {
-        this.sharedService.selectedItem$.subscribe(item => {
-          if (item) {
-            this.selectedItem = item;
-            this.form.patchValue(item);
-            this.buttonVisible = true;  // Toggle visibility for the update button
-          } else {
+          this.sharedService.resetForm$.subscribe(() => {
             this.form.reset();
-            this.buttonVisible = false; // Toggle visibility for the save button
-          }
-        });
+          });
+      
+          this.sharedService.buttonVisibility$.subscribe(isUpdate => {
+            this.buttonVisible = isUpdate;
+          });
+
+          this.sharedService.formData$.subscribe(data => {
+            if (data) {
+              this.form.patchValue(data);
+            }
+          });
+
+          this.sharedService.selectedItem$.subscribe(data => {
+            if (data) {
+              this.form.patchValue(data); // Update form with selected item data
+            } else {
+              this.form.reset(); // Clear form if no item selected
+            }
+          });
+      }
+
+      onSave() {
+        const formData = this.form.value;
+        // Implement logic to save updated data to your persistence layer via data service
+        // Example: this.dataService.updateData(formData).subscribe(...)
+        // After saving, reset form and notify success/failure
+        this.form.reset();
+        alert('Data updated successfully!');
       }
 
 
-      save(): void {
-        // Handle save logic here
+      saveData() {
+        if (this.form.valid) {
+          this.dataService.postData(this.form.value).subscribe(
+            response => {
+              alert('Data saved successfully');
+              this.form.reset();
+              this.sharedService.resetForm(); // Reset form data in shared service
+            },
+            error => {
+              console.error('Error saving data', error);
+              alert('Failed to save data');
+            }
+          );
+        }
       }
     
-      update(): void {
+      updateData(): void {
         // Handle update logic here
       }
 
