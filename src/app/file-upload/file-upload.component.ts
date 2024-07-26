@@ -89,27 +89,25 @@ export class FileUploadComponent implements OnInit{
     this.csvContent = [];
   }
 
-  saveToBackend() {
-    if (this.fullCsvContent.length > 0) {
-      this.isLoading = true;
-      const promises = this.fullCsvContent.map((item) =>
-        this.dataService.postData(item).toPromise()
-      );
+  saveToBackend() {if (this.fullCsvContent.length > 0) {
+    this.isLoading = true;
+    const promises = this.fullCsvContent.map((item) =>
+      this.dataService.postData(item).toPromise()
+    );
 
-      Promise.all(promises)
-        .then((responses) => {
-          console.log('All data successfully posted', responses);
-          this.fullCsvContent = []; // Clear the csvContent after successful upload
-          this.isLoading = false;
-        })
-        .catch((error) => {
-          console.error('Error posting data', error);
-          this.isLoading = false;
-        });
-    } else {
-      console.error('No data to submit');
-    }
-    
+    Promise.all(promises)
+      .then((responses) => {
+        console.log('All data successfully posted', responses);
+        this.fullCsvContent = []; // Clear the csvContent after successful upload
+        this.isLoading = false;
+      })
+      .catch((error) => {
+        console.error('Error posting data', error);
+        this.isLoading = false;
+      });
+  } else {
+    console.error('No data to submit');
+  }
   }
     
   }

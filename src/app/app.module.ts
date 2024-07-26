@@ -12,6 +12,7 @@ import { ModalComponent } from './Modal/modal.component';
 import { FooterComponent } from './Footer/footer.component';
 import { SharedService } from './shared.service';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { ChartComponent } from './chart/chart.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     NavComponent,
     ModalComponent,
     FooterComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,

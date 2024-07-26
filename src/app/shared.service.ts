@@ -40,9 +40,7 @@ export class SharedService {
 
   setSelectedItem(item: any) {
     this.selectedItemSubject.next(item);
-  }
-
-  
+  }  
 
   private formDataSource = new BehaviorSubject<any>(null);
   formData$ = this.formDataSource.asObservable();
