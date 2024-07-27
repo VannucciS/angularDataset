@@ -1,15 +1,12 @@
 <label for="Year">Date </label>
-<select name="Year" id="Year">
+<select name="Year" id="Year" #yearSelect (change)="onYearChange(yearSelect.value)">
     <option *ngFor="let date of listDate" [value]="date">{{date}}</option>    
 </select>
-<label for = "Geography">Geography </label>
-<select name="Geography" id="Geography">
-    <option *ngFor="let geo of listLocation" [value]="geo">{{geo}}</option>
-</select>
-<label for="Area, production and farm value of potatoes">Area, production and farm value of potatoes </label>
-<select name="Area, production and farm value of potatoes" id="Geography">
+<label for="Area, production and farm value of potatoes" >Area, production and farm value of potatoes </label>
+<select name="Area, production and farm value of potatoes" id="Geography" #APFVPSelect (change)="onAPFVPChange(APFVPSelect.value)">
     <option *ngFor="let type of listARFAFVP" [value]="type">{{type}}</option>
 </select>
+<button (click)="buttonToChart()">Create Chart</button>
 
 
 <div class="chart-container">

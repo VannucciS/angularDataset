@@ -11,19 +11,31 @@ import { Dataset } from '../Model/dataset.model';
 })
 export class ChartComponent implements OnInit {
 
+
+
   public data: any[] = [];
   public filteredData: any[] = [];
   public listDate: any[] = [];
   public listLocation: any[] = [];
   public listARFAFVP: any[] = [];
+  public year: string = '1908';
+  public APFVP: string = 'Seeded area, potatoes';
+  public dataForChart: any[] = [];
   
 
-  public chart: any = [];
+  public chart: any = null;
 
   constructor(private dataService: DataService) { 
     
   }
-
+  //this function is used to get the year and APFVP
+  onYearChange(year: string) {
+    this.year = year;
+    }
+    
+  onAPFVPChange(APFVP: string) {
+    this.APFVP = APFVP;
+    }
 
   //data from the following columns
   // REF_DATE = DATE
@@ -34,32 +46,33 @@ export class ChartComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
-    this.createChart();
+    //this.createChart();
     this.getTheLists();
 
   }
 
+  //this function is used to create the chart
   createChart(){
+    //destroy the previous chart
+    if(this.chart){
+      this.chart.destroy();
+    }
+    
+    const colors = this.dataForChart.map((item: any, index: number)=>{
+      const colorArray = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink', 'brown', 'black', 'grey'];
+      return colorArray[index % colorArray.length];});
 
     this.chart = new Chart("MyChart", {
       type: 'bar', //this denotes tha type of chart
 
       data: {// values on X-Axis
-        labels: ['2022-05-10', '2022-05-11', '2022-05-12','2022-05-13',
-								 '2022-05-14', '2022-05-15', '2022-05-16','2022-05-17', ], 
+        labels: this.listLocation, 
 	       datasets: [
           {
-            label: "Sales",
-            data: ['467','576', '572', '79', '92',
-								 '574', '573', '576'],
-            backgroundColor: 'blue'
-          },
-          {
-            label: "Profit",
-            data: ['542', '542', '536', '327', '17',
-									 '0.00', '538', '541'],
-            backgroundColor: 'limegreen'
-          }  
+            label: this.dataForChart[0].unitOfMeasure,
+            data: this.dataForChart.map((item: any)=>{return item.value;}),
+            backgroundColor: colors
+          }
         ]
       },
       options: {
@@ -87,26 +100,32 @@ export class ChartComponent implements OnInit {
         location: item.GEO,
         areaProductionFarmValue: item.APFVP,
         unitOfMeasure: item.UOM,
-        value: item.VALUE_
+        value: item.VAL
       }
     });
-    
     this.getTheLists();
   } 
 
   // this function is used to get the list of dates
   getTheLists(){
-    this.listDate = Array.from(new Set(this.filteredData.map((item: any)=>{      
-      return item.date;      
-    })));
-    console.log('List of Dates:', this.listDate);
+    this.listDate = Array.from(new Set(this.filteredData.map((item: any)=>{return item.date;})));   
     
-    this.listLocation = Array.from(new Set(this.filteredData.map((item: any)=>{
-      return item.location;
-    })));
-    this.listARFAFVP = Array.from(new Set(this.filteredData.map((item: any)=>{
-      return item.areaProductionFarmValue;
-    })));
+    this.listLocation = Array.from(new Set(this.filteredData.map((item: any)=>{return item.location;})));
+
+    this.listARFAFVP = Array.from(new Set(this.filteredData.map((item: any)=>{return item.areaProductionFarmValue;})));
+  }
+  
+  // this function is used to filter the data for the chart
+  chartData(){
+    this.dataForChart = this.filteredData.filter((item: any)=>{
+      return item.date === this.year && item.areaProductionFarmValue === this.APFVP;
+    });    
+  }
+
+  //this function is used to create the chart
+  buttonToChart(){
+    this.chartData();
+    this.createChart();
   }
 
 }

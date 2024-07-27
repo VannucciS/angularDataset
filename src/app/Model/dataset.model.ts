@@ -7,15 +7,15 @@ export interface Dataset {
     DGUID: string;
     APFVP: string;
     UOM: string;
-    UOM_ID: number;
+    UOM_ID: string;
     SCALAR_FACTOR: string;
-    SCALAR_ID: number;
+    SCALAR_ID: string;
     VECTOR: string;
-    COORDINATE: number;
-    VALUE_: number;
+    COORDINATE: string;
+    VAL: string;
     STATUS_: string;
     SYMBOL: string;
     TERM: string;
-    DECIM: number;
+    DECIM: string;
   }
   
